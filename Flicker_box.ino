@@ -2,10 +2,11 @@
 ***********************************
 Bulb flicker program by Ben Barwise
 ***********************************
-Version (alpha) 0.1  - 07/11/2013
+Version (alpha) 0.2  - 07/11/2013
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This code does not work it simply shows the basic structure
-of the pattern but flickers unrealistically and predictably.
+Status:
+This code is currently untested until I try it out
+on a working arduino. Variables are not set properly
 
 About:
 I wrote this program to learn about git (and github)
@@ -35,7 +36,15 @@ such as
 ********************************************************
 
 */
+// Master fixed variables that make it easier to change parameters
+const int max_flicker_time = 100;
+const int min_flicker_time = 100;
+const int max_flicker_length = 100;
+const int min_flicker_length = 100;
+const int off_variation_offset = 100;
 
+// Variables used in the program
+int flicker_length,hold_on,hold_off,flick_off,flick_on;
 
 
 void setup() {
@@ -43,17 +52,25 @@ void setup() {
 }
 
 void loop() {
+  
+flicker_length = random(0,100); // min and max flicker loop length
+
+hold_on = random(100,200);
+hold_off = random(100,200);
+
 
 // Startup flashes
-for (int i; i < 100; i++){
+for (int i; i < flicker_length; i++){
   digitalWrite(13,0);
-  delay(10);
+  delay(flick_off);
   digitalWrite(13,1);
-  delay(10);
+  delay(flick_on);
+  flick_off = random(100,200);  //on and off varies during loop 
+  flick_on = random(100,200);   // Unsure if this adds noticable time to the flicker on
 }
 
-delay(10); // Loop ends with on so this delay then decides sucess hold
+delay(hold_on); // Loop ends with on so this delay then decides sucess hold
 digitalWrite(13,0); // This is then the faliure
-delay(10); // how long to wait before next startup attempt
+delay(hold_off); // how long to wait before next startup attempt
 
-
+}
