@@ -4,7 +4,7 @@ Flicker_box
 Bulb flicker program by Ben Barwise
 ***********************************
 Version (alpha) 0.1  - 07/11/2013
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+******
 This code does not work it simply shows the basic structure
 of the pattern but flickers unrealistically and predictably.
 
